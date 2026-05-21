@@ -271,7 +271,9 @@ def view_resume():
     
     return render_template('resume_template.html', resume=resume, education=education, projects=projects, certifications=certifications, achievements=achievements, coding=coding)
 
+# --- FORCE DATABASE INITIALIZATION ON SERVER START ---
+# This ensures tables compile whether run via local script or WSGI/Gunicorn production servers.
+enforce_fresh_database()
+
 if __name__ == '__main__':
-    # Force runtime infrastructure alignment parsing check
-    enforce_fresh_database()
     app.run(debug=True)
